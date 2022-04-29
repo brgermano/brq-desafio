@@ -65,4 +65,11 @@ public class CandidatoResource {
         List<Candidato> candidato = candidatoRepository.findBySkill(skill.trim().toUpperCase());
         return new ResponseEntity<List<Candidato>>(candidato, HttpStatus.OK);
     }
+
+    @GetMapping(value = "buscarPorCertificacao")
+    @ResponseBody
+    public ResponseEntity<List<Candidato>> buscarPorCertificacao(@RequestParam(name = "certificacao") String certificacao) {
+        List<Candidato> candidato = candidatoRepository.findByCertificacao(certificacao.trim().toUpperCase());
+        return new ResponseEntity<List<Candidato>>(candidato, HttpStatus.OK);
+    }
 }

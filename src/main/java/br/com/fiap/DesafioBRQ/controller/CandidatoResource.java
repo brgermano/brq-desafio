@@ -43,7 +43,6 @@ public class CandidatoResource {
     @ResponseBody
     public ResponseEntity<List<Candidato>> buscarPorNome(@RequestParam(name = "nome") String nome) {
         List<Candidato> candidato = candidatoRepository.findByNome(nome.trim().toUpperCase());
-
         return new ResponseEntity<List<Candidato>>(candidato, HttpStatus.OK);
     }
 
@@ -51,7 +50,13 @@ public class CandidatoResource {
     @ResponseBody
     public ResponseEntity<List<Candidato>> buscarPorEmail(@RequestParam(name = "email") String email) {
         List<Candidato> candidato = candidatoRepository.findByEmail(email.trim().toUpperCase());
+        return new ResponseEntity<List<Candidato>>(candidato, HttpStatus.OK);
+    }
 
+    @GetMapping(value = "buscarPorCpf")
+    @ResponseBody
+    public ResponseEntity<List<Candidato>> buscarPorCpf(@RequestParam(name = "cpf") String cpf) {
+        List<Candidato> candidato = candidatoRepository.findByCpf(cpf.trim().toUpperCase());
         return new ResponseEntity<List<Candidato>>(candidato, HttpStatus.OK);
     }
 }

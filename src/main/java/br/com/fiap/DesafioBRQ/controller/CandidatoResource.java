@@ -59,4 +59,10 @@ public class CandidatoResource {
         List<Candidato> candidato = candidatoRepository.findByCpf(cpf.trim().toUpperCase());
         return new ResponseEntity<List<Candidato>>(candidato, HttpStatus.OK);
     }
+    @GetMapping(value = "buscarPorSkill")
+    @ResponseBody
+    public ResponseEntity<List<Candidato>> buscarPorSkill(@RequestParam(name = "skill") String skill) {
+        List<Candidato> candidato = candidatoRepository.findBySkill(skill.trim().toUpperCase());
+        return new ResponseEntity<List<Candidato>>(candidato, HttpStatus.OK);
+    }
 }

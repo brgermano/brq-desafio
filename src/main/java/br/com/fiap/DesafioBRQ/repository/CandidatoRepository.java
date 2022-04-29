@@ -18,6 +18,8 @@ public interface CandidatoRepository extends JpaRepository<Candidato, Integer> {
     @Query(value = "select c from Candidato c where upper(trim(c.cpf)) like %?1%")
     List<Candidato> findByCpf(String cpf);
 
+    @Query(value = "select c from Candidato c where upper(trim(c.skill)) like %?1%")
     List<Candidato> findBySkill(String skill);
+
     List<Candidato> findByCertificacao(String cert);
 }

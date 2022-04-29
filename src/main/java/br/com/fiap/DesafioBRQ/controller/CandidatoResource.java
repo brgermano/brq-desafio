@@ -46,4 +46,12 @@ public class CandidatoResource {
 
         return new ResponseEntity<List<Candidato>>(candidato, HttpStatus.OK);
     }
+
+    @GetMapping(value = "buscarPorEmail")
+    @ResponseBody
+    public ResponseEntity<List<Candidato>> buscarPorEmail(@RequestParam(name = "email") String email) {
+        List<Candidato> candidato = candidatoRepository.findByEmail(email.trim().toUpperCase());
+
+        return new ResponseEntity<List<Candidato>>(candidato, HttpStatus.OK);
+    }
 }

@@ -4,6 +4,7 @@ import br.com.fiap.DesafioBRQ.model.Candidato;
 import br.com.fiap.DesafioBRQ.repository.CandidatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,4 +39,11 @@ public class CandidatoResource {
         candidatoRepository.deleteById(codigo);
     }
 
+    @GetMapping(value = "buscarPorNome")
+    @ResponseBody
+    public ResponseEntity<List<Candidato>> buscarPorNome(@RequestParam(name = "nome") String nome) {
+        List<Candidato> candidato = candidatoRepository.findByNome(nome.trim().toUpperCase());
+
+        return new ResponseEntity<List<Candidato>>(candidato, HttpStatus.OK);
+    }
 }
